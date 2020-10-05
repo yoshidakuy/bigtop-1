@@ -51,7 +51,7 @@ class TestZookeeper {
     logError(sh);
     assertTrue("Failed ...", sh.getRet() == 0);
 
-    String out = sh.getOut()[0].trim();
+    String out = sh.getOut()[1].trim();
     assertTrue(out.contains("Mode"));
     // If this is the only Zookeeper node, then we should be in
     // "standalone" mode. If not, we should be in "leader" or
