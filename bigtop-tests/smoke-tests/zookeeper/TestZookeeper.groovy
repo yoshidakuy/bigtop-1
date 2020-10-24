@@ -63,4 +63,18 @@ class TestZookeeper {
     );
     LOG.info('zkServer.sh status checks out.');
   }
+
+  @Test
+  void testZkRestStatus() {
+    // Basic test to verify that the server is running, and is in a
+    // state that we expect.
+    LOG.info('Running zookeeper-rest status');
+    sh.exec("curl http://localhost:9998/znodes/v1/");
+    logError(sh);
+    assertTrue("Failed ...", sh.getRet() == 0);
+
+    String out = sh.getOut();
+    assertTrue(out.contains("<mzxid>"));
+    LOG.info('zookeeper-rest status checks out.');
+  }
 }
